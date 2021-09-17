@@ -274,7 +274,7 @@ nopara = "NOPARA:" + item
       atts['xlink:show'] = file_version['xlink_show_attribute'] || 'new'
       atts['xlink:role'] = file_version['use_statement'] if file_version['use_statement']
       atts['xlink:href'] = file_version['file_uri'] 
-      atts['xlink:audience'] = get_audience_flag_for_file_version(file_version)
+      atts['audience'] = get_audience_flag_for_file_version(file_version)
       xml.dao(atts) {
         xml.daodesc{ sanitize_mixed_content(content, xml, fragments, true) } if content
       }
@@ -292,7 +292,7 @@ nopara = "NOPARA:" + item
           atts['xlink:href'] = file_version['file_uri'] 
           atts['xlink:role'] = file_version['use_statement'] if file_version['use_statement']
           atts['xlink:title'] = file_version['caption'] if file_version['caption']
-          atts['xlink:audience'] = get_audience_flag_for_file_version(file_version)
+          atts['audience'] = get_audience_flag_for_file_version(file_version)
           if showAtt == 'embed'
 	    atts['xlink:label'] = 'thumb'
           elsif showAtt == 'new'
