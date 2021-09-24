@@ -18,6 +18,16 @@
         *                                                                 *
         *******************************************************************
     -->
+
+    <!--
+       MODIFIED for Harvard's use by Bobbi Fox  31 October 2018
+     - Reformatted to enhance readability
+     - See comments with FOX preceding them for differences
+
+     Backported + reconciled from 3.1.0 on 2021-09-24
+    -->
+    
+
     <xsl:output method="xml" encoding="utf-8" indent="yes"/>
 
     <!-- Calls a stylesheet with local functions and lookup lists for languages and subject authorities -->
