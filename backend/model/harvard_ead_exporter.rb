@@ -4,6 +4,17 @@ require 'securerandom'
 class EADSerializer < ASpaceExport::Serializer
   serializer_for :ead
 
+  # backported from 3.1.0 -> 3.0.2
+  # ANW-669: Fix for attributes in mixed content causing errors when validating against the EAD schema.
+  # If content looks like it contains a valid XML element with an attribute from the expected list,
+  # then replace the attribute like " foo=" with " xlink:foo=".
+  def add_xlink_prefix(content)
+    %w{ actuate arcrole from href role show title to}.each do |xa|
+      content.gsub!(/ #{xa}=/) {|match| " xlink:#{match.strip}"} if content =~ / #{xa}=/
+    end
+    content
+  end
+
   def xml_errors(content)
     # there are message we want to ignore. annoying that java xml lib doesn't
     # use codes like libxml does...
