@@ -19,15 +19,6 @@
         *******************************************************************
     -->
 
-    <!--
-       MODIFIED for Harvard's use by Bobbi Fox  31 October 2018
-     - Reformatted to enhance readability
-     - See comments with FOX preceding them for differences
-
-     Backported + reconciled from 3.1.0 on 2021-09-24
-    -->
-    
-
     <xsl:output method="xml" encoding="utf-8" indent="yes"/>
 
     <!-- Calls a stylesheet with local functions and lookup lists for languages and subject authorities -->
@@ -248,13 +239,15 @@
             </fo:block>
             <xsl:if test="ead:subtitle">
                 <fo:block font-size="16" font-weight="bold"><xsl:apply-templates select="ead:subtitle"/></fo:block>
-            </xsl:if>
-            <!-- FOX: display the sponsor -->
+             </xsl:if>
+
+            <!-- HARVARD CUSTOMIZATION: display the sponsor -->
             <xsl:if test="ead:sponsor">
                 <fo:block font-size="12">
                     <xsl:apply-templates select="ead:sponsor"/>
-                </fo:block>               
+                </fo:block>     
             </xsl:if>
+
         </fo:block>
         <fo:block margin-top="8pt">
             <xsl:apply-templates select="/ead:ead/ead:eadheader/ead:profiledesc"/>
@@ -1299,12 +1292,12 @@
         <fo:block margin="4pt 18pt"><xsl:apply-templates/></fo:block>
     </xsl:template>
     <xsl:template match="ead:emph[not(@render)]"><fo:inline font-style="italic"><xsl:apply-templates/></fo:inline></xsl:template>
-
-    <!-- FOX: render the text in the title element as italic -->
+    
+    <!-- HARVARD CUSTOMIZATION: render the text in the title element as italic -->
     <xsl:template match="ead:title">
         <fo:inline font-style="italic"><xsl:apply-templates/></fo:inline>
     </xsl:template>
-    
+
     <!-- Collection Inventory (dsc) templates -->
     <xsl:template match="ead:archdesc/ead:dsc">
         <xsl:if test="count(child::*) >= 1">
@@ -1554,15 +1547,15 @@
     <!-- Unittitles and all other clevel elements -->
     <xsl:template match="ead:did" mode="dsc">
         <fo:block margin-bottom="0">
-
-            <!-- FOX: display the unit id -->
+        
+            <!-- HARVARD CUSTOMIZATION: Display the unit id -->
             <xsl:if test="(string-length(ead:unitid) &gt; 0)">
                 <fo:inline font-style="italic">
                     <xsl:value-of select="ead:unitid"/>
                     <xsl:text>: </xsl:text>
                 </fo:inline>
             </xsl:if>
-            
+
             <xsl:apply-templates select="ead:unittitle"/>
             <xsl:if test="(string-length(ead:unittitle[1]) &gt; 1) and (string-length(ead:unitdate[1]) &gt; 1)">, </xsl:if>
             <xsl:for-each select="ead:unitdate">
