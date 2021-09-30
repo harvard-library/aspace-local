@@ -284,7 +284,7 @@ nopara = "NOPARA:" + item
       atts['xlink:actuate'] = file_version['xlink_actuate_attribute'] || 'onRequest'
       atts['xlink:show'] = file_version['xlink_show_attribute'] || 'new'
       atts['xlink:role'] = file_version['use_statement'] if file_version['use_statement']
-      atts['xlink:href'] = file_version['file_uri'] 
+      atts['xlink:href'] = file_version['file_uri'].strip 
       atts['xlink:audience'] = get_audience_flag_for_file_version(file_version)
       xml.dao(atts) {
         xml.daodesc{ sanitize_mixed_content(content, xml, fragments, true) } if content
@@ -300,7 +300,7 @@ nopara = "NOPARA:" + item
 	  showAtt    = file_version['xlink_show_attribute']
 	  actuateAtt = file_version['xlink_actuate_attribute']
           atts['xlink:type'] = 'locator'
-          atts['xlink:href'] = file_version['file_uri'] 
+          atts['xlink:href'] = file_version['file_uri'].strip 
           atts['xlink:role'] = file_version['use_statement'] if file_version['use_statement']
           atts['xlink:title'] = file_version['caption'] if file_version['caption']
           atts['xlink:audience'] = get_audience_flag_for_file_version(file_version)
